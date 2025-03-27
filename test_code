@@ -1,0 +1,37 @@
+import time
+
+
+
+def measure_time(a):
+    start_time = time.time()  # 計測開始
+    interval = 5  # 30秒ごとに出力
+    next_checkpoint = start_time + interval
+
+    print("Start timing----")
+
+    try:
+        while True:
+            elapsed_time = time.time() - start_time
+            if time.time() >= next_checkpoint:
+                print(f"Spend {int(elapsed_time)}s")
+                if int(time.time()-start_time)==15:
+                    print("tooooo long!")
+                next_checkpoint += interval
+            time.sleep(1)
+    except KeyboardInterrupt:
+        total_time = time.time() - start_time
+        print(f"\nTotal elapsed time: {int(total_time)}s")
+        z = input("Do you again?(yes/no)")
+        if z == "no":
+            print("program finish!")
+            a = False
+
+    return a
+        
+
+
+if __name__ == "__main__":
+    a = True
+    while(a):
+        a = measure_time(a)
+
